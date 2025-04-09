@@ -75,7 +75,7 @@ jobs:
         with:
           projectBaseDir: .
           args: >
-            -Dsonar.projectKey=handson-nestjs
+            -Dsonar.projectKey=geraldobl58_handson-nestjs
             -Dsonar.organization=geraldobl58
             -Dsonar.sources=src
             -Dsonar.tests=test
