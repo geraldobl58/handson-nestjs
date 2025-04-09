@@ -71,18 +71,19 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v5.0.0
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: "f1d77a1f7cac5657b965d312e5001a4bef172b27"
           SONAR_HOST_URL: https://sonarcloud.io
         with:
-          projectBaseDir: .
-          args: >
-            -Dsonar.projectKey=geraldobl58_handson-nestjs
-            -Dsonar.organization=geraldobl58
-            -Dsonar.sources=src
-            -Dsonar.tests=test
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-            -Dsonar.testExecutionReportPaths=coverage/test-report.xml
-            -Dsonar.qualitygate.wait=true
-            -Dsonar.qualitygate.timeout=300
+          scanMetadataReportFile: coverage/test-report.xml
+          # projectBaseDir: .
+          # args: >
+          #   -Dsonar.projectKey=geraldobl58_handson-nestjs
+          #   -Dsonar.organization=geraldobl58
+          #   -Dsonar.sources=src
+          #   -Dsonar.tests=test
+          #   -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+          #   -Dsonar.testExecutionReportPaths=coverage/test-report.xml
+          #   -Dsonar.qualitygate.wait=true
+          #   -Dsonar.qualitygate.timeout=300
 
       
