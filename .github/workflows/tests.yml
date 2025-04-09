@@ -45,6 +45,7 @@ jobs:
   sonarcube:
     name: SonarQube Analysis
     runs-on: ubuntu-latest
+    needs: [unit_test, e2e_test]
     steps:
       - name: Setup project
         uses: actions/checkout@v4
