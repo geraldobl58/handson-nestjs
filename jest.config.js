@@ -12,10 +12,12 @@ module.exports = {
   reporters: [
     'default',
     [
-      'jest-junit',
+      'jest-sonar-reporter',
       {
         outputDirectory: 'coverage',
         outputName: 'test-report.xml',
+        reportedFilePath: 'relative',
+        relativeRootDir: '<rootDir>/../',
       },
     ],
   ],
