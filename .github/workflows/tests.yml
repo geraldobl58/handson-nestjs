@@ -70,7 +70,7 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v5.0.0
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: "7aa8ebc4373111314fdff1298c8344072fc9f81f"
           SONAR_HOST_URL: https://sonarcloud.io
         with:
           projectBaseDir: .
