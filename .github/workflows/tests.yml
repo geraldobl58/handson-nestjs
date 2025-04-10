@@ -77,7 +77,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
-          scanMetadataReportFile: unit-test-report.xml
+          scanMetadataReportFile: .scannerwork/report-task.txt
       - name: Status Quality Gate
         if: ${{ always() }}
         run: |
