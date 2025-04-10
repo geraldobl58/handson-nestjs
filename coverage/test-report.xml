@@ -1,9 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="1" failures="0" errors="0" time="5.377">
-  <testsuite name="AppController" errors="0" failures="0" skipped="0" timestamp="2025-04-09T20:08:33" time="5.013" tests="1">
-    <testcase classname="AppController &gt; root" name="should return &quot;Hello World!&quot;" time="0.013">
-      <system-out></system-out>
-      <system-err></system-err>
-    </testcase>
-  </testsuite>
-</testsuites>
+<testExecutions version="1">
+<file path="src/app.controller.spec.ts">
+<testCase name="AppController root should return &quot;Hello World!&quot;" duration="14" />
+</file>
+</testExecutions>
