@@ -70,4 +70,17 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+      - name: Quality Gate
+        uses: sonarsource/sonarqube-quality-gate-action@v1.1.0
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          scanMetadataReportFile: unit-test-report.xml
+      - name: Status Quality Gate
+        if: ${{ always() }}
+        run: |
+          echo "Status Quality Gate: ${{ steps.status.outputs.status }}"
+
   
