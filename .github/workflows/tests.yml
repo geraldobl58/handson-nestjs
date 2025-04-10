@@ -50,12 +50,6 @@ jobs:
       - name: Setup project
         uses: actions/checkout@v4
 
-      - name: Setup JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '21'
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -65,25 +59,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build project
-        run: npm run build
+      - name: Run tests with coverage
+        run: npm run test:cov
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v5.0.0
-        env:
-          SONAR_TOKEN: "f1d77a1f7cac5657b965d312e5001a4bef172b27"
-          SONAR_HOST_URL: https://sonarcloud.io
+        uses: SonarSource/sonarcloud-github-action@v2
         with:
-          scanMetadataReportFile: coverage/test-report.xml
-          # projectBaseDir: .
-          # args: >
-          #   -Dsonar.projectKey=geraldobl58_handson-nestjs
-          #   -Dsonar.organization=geraldobl58
-          #   -Dsonar.sources=src
-          #   -Dsonar.tests=test
-          #   -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-          #   -Dsonar.testExecutionReportPaths=coverage/test-report.xml
-          #   -Dsonar.qualitygate.wait=true
-          #   -Dsonar.qualitygate.timeout=300
+          args: >
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
 
       
