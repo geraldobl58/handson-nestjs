@@ -11,4 +11,14 @@ module.exports = {
   moduleFileExtensions: ['js', 'json', 'ts'],
   testRegex: '.*\\.spec\\.ts$',
   transformIgnorePatterns: ['/node_modules/'],
+  reporters: [
+    'default',
+    [
+      'jest-sonar-reporter',
+      {
+        outputDirectory: 'coverage',
+        outputName: 'test-report.xml',
+      },
+    ],
+  ],
 };
