@@ -28,6 +28,7 @@ jobs:
   tests:
     needs: [build]
     uses: geraldobl58/handson-nestjs/.github/workflows/tests.yml@main
+    secrets: inherit
 
   release:
       name: Create release
