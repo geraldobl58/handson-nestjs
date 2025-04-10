@@ -81,6 +81,6 @@ jobs:
       - name: Status Quality Gate
         if: ${{ always() }}
         run: |
-          echo "Status Quality Gate: ${{ steps.status.outputs.status }}"
+          echo "Status Quality Gate: ${{ steps.sonarcloud-quality-gate-check.outputs.status }}"
 
   
