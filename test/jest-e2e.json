@@ -4,22 +4,22 @@
     "json",
     "ts"
   ],
-  "rootDir": ".",
-  "testEnvironment": "node",
+  "rootDir": "../",
   "testRegex": ".e2e-spec.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
+  "setupFilesAfterEnv": [
+    "<rootDir>/test/setup.ts"
+  ],
+  "testEnvironment": "node",
   "reporters": [
     "default",
     [
-      "jest-junit",
+      "jest-sonar",
       {
         "outputDirectory": "coverage",
-        "outputName": "test-report.xml",
-        "classNameTemplate": "{classname}",
-        "titleTemplate": "{title}",
-        "ancestorSeparator": " > "
+        "outputName": "e2e-test-report.xml"
       }
     ]
   ]

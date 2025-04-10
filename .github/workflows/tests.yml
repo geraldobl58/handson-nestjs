@@ -42,33 +42,33 @@ jobs:
       - name: Run tests
         run: npm run test:e2e
       
-  sonarcube:
-    name: SonarQube Analysis
-    runs-on: ubuntu-latest
-    needs: [unit_test, e2e_test]
-    steps:
-      - name: Setup project
-        uses: actions/checkout@v4
+  # sonarcube:
+  #   name: SonarQube Analysis
+  #   runs-on: ubuntu-latest
+  #   needs: [unit_test, e2e_test]
+  #   steps:
+  #     - name: Setup project
+  #       uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '18'
+  #         cache: 'npm'
 
-      - name: Install dependencies
-        run: npm install
+  #     - name: Install dependencies
+  #       run: npm install
 
-      - name: Run tests with coverage
-        run: npm run test:cov
+  #     - name: Run tests with coverage
+  #       run: npm run test:cov
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
-        with:
-          args: >
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-        env:
-          SONAR_TOKEN: "32393d7ac0f48b5e485cbbbf8b64671364dfd616"
+  #     - name: SonarCloud Scan
+  #       uses: SonarSource/sonarcloud-github-action@v2
+  #       with:
+  #         args: >
+  #           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+  #       env:
+  #         SONAR_TOKEN: "32393d7ac0f48b5e485cbbbf8b64671364dfd616"
         
 
       
