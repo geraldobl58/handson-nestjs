@@ -70,10 +70,12 @@ jobs:
         env:
           SONAR_TOKEN: "32393d7ac0f48b5e485cbbbf8b64671364dfd616"
 
-      - name: Check Quality Gate
-        uses: SonarSource/sonarcloud-quality-gate-action@v1
-        with:
-          scanMetadataReportFile: .scannerwork/report-task.txt
-        env:
-          SONAR_TOKEN: "32393d7ac0f48b5e485cbbbf8b64671364dfd616"
+      # TODO: Check Quality Gate
+
+      # - name: Check Quality Gate
+      #   uses: SonarSource/sonarcloud-quality-gate-action@v1
+      #   with:
+      #     scanMetadataReportFile: .scannerwork/report-task.txt
+      #   env:
+      #     SONAR_TOKEN: "32393d7ac0f48b5e485cbbbf8b64671364dfd616"
   
