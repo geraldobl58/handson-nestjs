@@ -6,7 +6,7 @@ metadata:
     app: handson-nestjs
 spec:
   replicas: 2
-  progressDeadlineSeconds: 600
+  progressDeadlineSeconds: 900
   selector:
     matchLabels:
       app: handson-nestjs
@@ -30,11 +30,19 @@ spec:
             requests:
               memory: "256Mi"
               cpu: "250m"
-          livenessProbe:
+          startupProbe:
             httpGet:
               path: /health
               port: 3000
             initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 30
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 60
             periodSeconds: 10
             timeoutSeconds: 5
             failureThreshold: 3
@@ -42,7 +50,7 @@ spec:
             httpGet:
               path: /health
               port: 3000
-            initialDelaySeconds: 15
+            initialDelaySeconds: 45
             periodSeconds: 10
             timeoutSeconds: 5
             failureThreshold: 3
