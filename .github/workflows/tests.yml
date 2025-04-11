@@ -80,8 +80,6 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
           scanMetadataReportFile: .scannerwork/report-task.txt
-          waitForQualityGate: true
-          timeoutMinutes: 5
 
       - name: Status Quality Gate
         if: ${{ always() }}
