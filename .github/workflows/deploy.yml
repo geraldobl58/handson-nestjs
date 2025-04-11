@@ -1,0 +1,50 @@
+name: Deploy in Kubernetes
+
+on:
+  workflow_call:
+
+jobs:
+  deploy:
+    name: Deploy in Kubernetes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      - name: Install doctl
+        run: |
+          sudo snap install doctl
+
+      - name: Authenticate doctl
+        env:
+          DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+        run: |
+          doctl auth init -t $DIGITALOCEAN_ACCESS_TOKEN
+
+      - name: Fetch kubeconfig from DigitalOcean
+        env:
+          DIGITALOCEAN_CLUSTER_NAME: ${{ secrets.DIGITALOCEAN_CLUSTER_NAME }}
+        run: |
+          doctl kubernetes cluster kubeconfig save $DIGITALOCEAN_CLUSTER_NAME
+
+      - name: Config Kubernetes Context
+        uses: azure/k8s-set-context@v3
+        with:
+          CLUSTER_NAME: ${{ secrets.DIGITALOCEAN_CLUSTER_NAME }}
+
+      - name: Deploy to Kubernetes
+        uses: azure/k8s-deploy@v5
+        with:
+          manifests: |
+            k8s/deployment.yaml
+          images: |
+            geraldobl58/handson-nestjs:v${{ github.run_number }}
+
+      
+

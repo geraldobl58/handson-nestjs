@@ -78,3 +78,7 @@ jobs:
             category: 'docker-result'
             sarif_file: trivy-docker-result.sarif
         
+  deploy-homolog:
+    needs: [release]
+    uses: geraldobl58/handson-nestjs/.github/workflows/deploy.yml@main
+    secrets: inherit
