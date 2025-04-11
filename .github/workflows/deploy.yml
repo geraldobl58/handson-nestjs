@@ -19,9 +19,10 @@ jobs:
 
       - name: Install doctl
         run: |
-          curl -sL https://github.com/digitalocean/doctl/releases/latest/download/doctl-$(uname -s)-$(uname -m) -o doctl
-          chmod +x doctl
+          wget https://github.com/digitalocean/doctl/releases/download/v1.102.0/doctl-1.102.0-linux-amd64.tar.gz
+          tar xf doctl-1.102.0-linux-amd64.tar.gz
           sudo mv doctl /usr/local/bin
+          rm doctl-1.102.0-linux-amd64.tar.gz
         
       - name: Authenticate doctl
         run: doctl auth init --access-token ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
