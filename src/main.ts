@@ -9,9 +9,9 @@ async function bootstrap() {
   app.enableCors();
 
   // Add health check endpoint
-  app.getHttpAdapter().get('/health', (req, res) => {
-    res.status(200).send('OK');
-  });
+  // app.getHttpAdapter().get('/health', (req, res) => {
+  //   res.status(200).send('OK');
+  // });
 
   // // Swagger configuration
   // const config = new DocumentBuilder()
