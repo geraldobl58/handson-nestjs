@@ -11,7 +11,7 @@ RUN npm install
 COPY . .
 
 RUN npm run build
-RUN npm install workspaces focus --production && npm cache clean --force
+RUN npm install workspaces@latest focus --production && npm cache clean --force
 
 # SECOND WORK
 FROM node:18-alpine3.19
