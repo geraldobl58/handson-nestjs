@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: handson-nestjs
-  namespace: --namespace=${{ inputs.environment-name }}
+  namespace: homologacao
   labels:
     app: handson-nestjs
 spec:
