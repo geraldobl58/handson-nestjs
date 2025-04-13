@@ -59,9 +59,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: handson-nestjs
-  namespace: default
+  namespace: ${{ inputs.environment-name }}
+  labels:
+    app: handson-nestjs
 spec:
-  replicas: 1
+  replicas: 2
+  progressDeadlineSeconds: 900
   selector:
     matchLabels:
       app: handson-nestjs
@@ -77,4 +80,35 @@ spec:
             - containerPort: 3000
           env:
             - name: NODE_ENV
-              value: production
+              value: homologacao
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 30
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 45
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
