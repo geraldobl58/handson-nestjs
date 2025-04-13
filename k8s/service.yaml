@@ -3,9 +3,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: handson-nestjs
-  namespace: ${{ inputs.environment-name }}
+  namespace: producao
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: handson-nestjs
   ports:
