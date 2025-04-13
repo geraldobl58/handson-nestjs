@@ -1,12 +1,67 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: handson-nestjs
+#   labels:
+#     app: handson-nestjs
+# spec:
+#   replicas: 2
+#   progressDeadlineSeconds: 900
+#   selector:
+#     matchLabels:
+#       app: handson-nestjs
+#   template:
+#     metadata:
+#       labels:
+#         app: handson-nestjs
+#     spec:
+#       containers:
+#         - name: handson-nestjs
+#           image: geraldobl58/handson-nestjs:latest
+#           ports:
+#             - containerPort: 3000
+#           env:
+#             - name: NODE_ENV
+#               value: production
+#           resources:
+#             limits:
+#               memory: "512Mi"
+#               cpu: "500m"
+#             requests:
+#               memory: "256Mi"
+#               cpu: "250m"
+#           startupProbe:
+#             httpGet:
+#               path: /health
+#               port: 3000
+#             initialDelaySeconds: 30
+#             periodSeconds: 10
+#             timeoutSeconds: 5
+#             failureThreshold: 30
+#           livenessProbe:
+#             httpGet:
+#               path: /health
+#               port: 3000
+#             initialDelaySeconds: 60
+#             periodSeconds: 10
+#             timeoutSeconds: 5
+#             failureThreshold: 3
+#           readinessProbe:
+#             httpGet:
+#               path: /health
+#               port: 3000
+#             initialDelaySeconds: 45
+#             periodSeconds: 10
+#             timeoutSeconds: 5
+#             failureThreshold: 3
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: handson-nestjs
-  labels:
-    app: handson-nestjs
+  namespace: dev
 spec:
-  replicas: 2
-  progressDeadlineSeconds: 900
+  replicas: 1
   selector:
     matchLabels:
       app: handson-nestjs
@@ -23,34 +78,3 @@ spec:
           env:
             - name: NODE_ENV
               value: production
-          resources:
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
-            requests:
-              memory: "256Mi"
-              cpu: "250m"
-          startupProbe:
-            httpGet:
-              path: /health
-              port: 3000
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            timeoutSeconds: 5
-            failureThreshold: 30
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 3000
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            timeoutSeconds: 5
-            failureThreshold: 3
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 3000
-            initialDelaySeconds: 45
-            periodSeconds: 10
-            timeoutSeconds: 5
-            failureThreshold: 3

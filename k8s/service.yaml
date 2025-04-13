@@ -1,0 +1,12 @@
+# handson-nestjs-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: handson-nestjs
+spec:
+  type: LoadBalancer
+  selector:
+    app: handson-nestjs
+  ports:
+    - port: 80
+      targetPort: 3000 # Porta onde o NestJS está escutando no container
