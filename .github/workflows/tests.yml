@@ -88,12 +88,6 @@ jobs:
       #     echo "Status Quality Gate: ${{ steps.sonarcloud-quality-gate-check.outputs.quality-gate-status }}"
       #     echo "Quality Gate Details:"
       #     cat .scannerwork/report-task.txt
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
 
   
