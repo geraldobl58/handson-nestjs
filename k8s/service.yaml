@@ -5,10 +5,9 @@ metadata:
   name: handson-nestjs
   namespace: producao
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: handson-nestjs
   ports:
     - port: 80
       targetPort: 3000 # Porta onde o NestJS está escutando no container
-      nodePort: 30080 # Porta externa para acessar o serviço
