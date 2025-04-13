@@ -83,14 +83,14 @@ jobs:
     uses: geraldobl58/handson-nestjs/.github/workflows/deploy.yml@main
     secrets: inherit
     with:
-      environment-name: 'homologacao'
-      environment-url: 'http://165.227.240.220'
+      environment-name: homologacao
+      environment-url: http://165.227.240.220
 
   deploy-producao:
     needs: [release]
     uses: geraldobl58/handson-nestjs/.github/workflows/deploy.yml@main
     secrets: inherit
     with:
-      environment-name: 'producao'
-      environment-url: 'http://165.227.240.221'
+      environment-name: producao
+      environment-url: http://165.227.240.221
      
